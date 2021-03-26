@@ -2,6 +2,8 @@ import streamlit as st
 from PIL import Image
 import os
 import engine
+import numpy as np
+
 
 @st.cache
 def load_image(image_file):
@@ -37,10 +39,13 @@ def main():
   if choice == 'Dense Image':
     st.subheader (' High Density Crowd Image')
     image_file = st.sidebar.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
+    
     if image_file is not None:
       st.image(load_image(image_file), width = 500, caption = 'Uploaded image')
       save_uploadedfile(image_file, 'A')
-      st.write('Predicted number of people:', engine.run(image_file, 'A'))
+      image_heat=engine.run(image_file,'A')
+      st.image(image_heat,width = 500, caption = 'heatmap image')
+      st.write('Predicted number of people:', round(np.sum(image_heat)))
                  
   else:
     st.subheader('Low Density Crowd Image')
@@ -48,7 +53,9 @@ def main():
     if image_file is not None:
       st.image(load_image(image_file), width = 500)
       save_uploadedfile(image_file, 'B')
-      st.write(engine.run(image_file, 'B'))      
+      image_heat=engine.run(image_file,'B')
+      st.image(image_heat,width = 500, caption = 'heatmap image')
+      st.write('Predicted number of people:', round(np.sum(image_heat)))    
 
 if __name__ == '__main__':
     main()
