@@ -8,6 +8,11 @@ def load_image(image_file):
   img = Image.open(image_file)
   return img
 
+# Set page config
+apptitle = 'Crowd Counting'
+
+st.set_page_config(page_title=apptitle, page_icon=":fox_face:")
+
 #Save upload file
 def save_uploadedfile(image_file, part_name):
   with open(os.path.join("part", part_name, image_file.name),"wb") as f:
@@ -19,6 +24,11 @@ header = st.beta_container()
 with header:
   st.title('Crowd Counting App')
   st.text('In this project, we use....')
+#Sidebar
+
+st.sidebar.title('Select your image')
+
+
 def main():
   
   menu = ['Dense Image', 'Non-dense Image']
@@ -26,19 +36,25 @@ def main():
 
   if choice == 'Dense Image':
     st.subheader (' High Density Crowd Image')
-    image_file = st.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
+    image_file = st.sidebar.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
     if image_file is not None:
-      st.image(load_image(image_file), width = 250)
+      st.image(load_image(image_file), width = 500, caption = 'Uploaded image')
       save_uploadedfile(image_file, 'A')
       st.write('Predicted number of people:', engine.run(image_file, 'A'))
                  
   else:
     st.subheader('Low Density Crowd Image')
-    image_file_b = st.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
-    if image_file_b is not None:
-      st.image(load_image(image_file_b), width = 250)
+    image_file = st.sidebar.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
+    if image_file is not None:
+      st.image(load_image(image_file), width = 500)
       save_uploadedfile(image_file, 'B')
       st.write(engine.run(image_file, 'B'))      
 
 if __name__ == '__main__':
     main()
+
+
+st.subheader("About this app")
+st.markdown("""
+This app displays data....
+""")
