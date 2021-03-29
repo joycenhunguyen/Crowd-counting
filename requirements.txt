@@ -1,0 +1,8 @@
+keras==2.4.3
+pandas==1.2.3
+streamlit==0.79
+tensorflow==2.4.1
+scipy==1.6.2
+h5py~=2.10.0
+opencv-python==4.5.1.48
+matplotlib==3.4.0
