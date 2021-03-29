@@ -26,11 +26,10 @@ header = st.beta_container()
 with header:
   st.markdown(
     """<style>     .container {display: flex;flex-wrap:wrap;}</style>""",unsafe_allow_html=True)
-  st.markdown("""<h1>Crowd Counting App</h1>
+  st.markdown("""<h1 style='text-align:center;background-color:#003399;color:white;padding:20px'>Crowd Counting App</h1>
   <hr>
-  <h2>Instruction </h2>
-  <p>This app is designed to count a crowd which is not easily counted and depends on how crowded is in the photo. We give examples of bad images 
-  (because they are not crowded and do not need to run the app to count), and examples of Dense vs Non-dense imanges for your references. Dense images are impossible to count manually, and non-dense images are somewhat manageable to count with effort.</p>
+  <h2 style='color:#003399'><b>Instruction </b></h2>
+  <p>Below are examples of bad images (not a crowd), Dense vs Non-dense imanges for your references.</p>
   <p class='container'>
   <span>
   <img src="https://bambiniphoto.sg/wp-content/uploads/family-photography-bambini-025.jpg" alt="avoid1" style="width:300px;height:150px;padding:5px">
@@ -70,7 +69,7 @@ def main():
   choice = st.sidebar.selectbox('Options', options = menu)
 
   if choice == 'Dense Image':
-    st.markdown('## Result')
+    st.markdown("""<h2 style='color:#003399'><b>Result</b></h2>""",unsafe_allow_html=True)
     image_file = st.sidebar.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
     
     if image_file is not None:
@@ -88,7 +87,7 @@ def main():
   
                  
   else:
-    st.markdown('## Result')
+    st.markdown("""<h2 style='color:#003399'><b>Result</b></h2>""",unsafe_allow_html=True)
     image_file = st.sidebar.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
     if image_file is not None:
       col1, col2 = st.beta_columns(2)
@@ -108,7 +107,7 @@ if __name__ == '__main__':
     main()
 
 
-st.subheader("About this app")
-st.markdown("""
-This app is developed by Nhu Nguyen, Thuong Nguyen, Radim Musalek basing on https://github.com/ZhengPeng7/CSRNet-Keras.
-""")
+# st.subheader("---")
+# st.markdown("""<p style='text-align:center'>
+# Made by Nhu Nguyen, Thuong Nguyen, Radim Musalek. Deep Learning model is pretained from https://github.com/ZhengPeng7/CSRNet-Keras.</p>
+# """,unsafe_allow_html=True)
