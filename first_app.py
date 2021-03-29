@@ -101,6 +101,7 @@ def main():
         plt.imshow(image_heat, cmap=plt.cm.jet)
         plt.axis('off')
         st.pyplot(fig)
+        st.write('Predicted number of people:', round(np.sum(image_heat)))
  
 
 if __name__ == '__main__':
@@ -109,5 +110,5 @@ if __name__ == '__main__':
 
 st.subheader("About this app")
 st.markdown("""
-This app is developed by Nhu Nguyen, Thuong Nguyen, Radim Musalek basing on the previously well developed models (details in our github link).
+This app is developed by Nhu Nguyen, Thuong Nguyen, Radim Musalek basing on https://github.com/ZhengPeng7/CSRNet-Keras.
 """)
