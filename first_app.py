@@ -3,7 +3,7 @@ from PIL import Image
 import os
 import engine
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 @st.cache
 def load_image(image_file):
@@ -74,14 +74,16 @@ def main():
     image_file = st.sidebar.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
     
     if image_file is not None:
-      col1, col2,col3 = st.beta_columns(3)
+      col1, col2= st.beta_columns(2)
       with col1:
-        st.image(load_image(image_file), width = 500, caption = 'Uploaded image')
+        st.image(load_image(image_file), use_column_width='auto', caption = 'Uploaded image')
         save_uploadedfile(image_file, 'A')
       with col2:
         image_heat=engine.run(image_file,'A')  
-        st.image(image_heat,width = 500, caption = 'heatmap image')
-      with col3: 
+        fig=plt.figure(figsize=(3,2))
+        plt.imshow(image_heat, cmap=plt.cm.jet)
+        plt.axis('off')
+        st.pyplot(fig)
         st.write('Predicted number of people:', round(np.sum(image_heat)))
   
                  
@@ -89,15 +91,16 @@ def main():
     st.markdown('## Result')
     image_file = st.sidebar.file_uploader(' ', type= ['jpeg', 'png', 'jpg'], key = choice)
     if image_file is not None:
-      col1, col2,col3 = st.beta_columns(3)
+      col1, col2 = st.beta_columns(2)
       with col1:
-        st.image(load_image(image_file), width = 500, caption = 'Uploaded image')
+        st.image(load_image(image_file), use_column_width='auto', caption = 'Uploaded image')
         save_uploadedfile(image_file, 'B')
       with col2:
         image_heat=engine.run(image_file,'B')
-        st.image(image_heat,width = 500, caption = 'heatmap image')
-      with col3:
-        st.write('Predicted number of people:', round(np.sum(image_heat))) 
+        fig=plt.figure(figsize=(3,2))
+        plt.imshow(image_heat, cmap=plt.cm.jet)
+        plt.axis('off')
+        st.pyplot(fig)
  
 
 if __name__ == '__main__':
