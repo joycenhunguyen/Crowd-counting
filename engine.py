@@ -46,7 +46,7 @@ def run(image_file, part_name):
     model.load_weights(os.path.join(weights_dir_neo, '{}_best.hdf5'.format(net)))
 
     ct_preds = []
-    ct_gts = []
+    
     for i in range(len(test_x[:])):
         if i % 100 == 0:
             print('{}/{}'.format(i, len(test_x)))
@@ -54,9 +54,10 @@ def run(image_file, part_name):
         test_x_display = np.squeeze(test_x[i])
 
         pred = np.squeeze(model.predict(np.expand_dims(test_x_display, axis=0)))
-        ct_pred = np.sum(pred)
+        #ct_pred = np.sum(pred)
 
-        ct_preds.append(ct_pred)
+        ct_preds.append(pred)
+
        
     for i in range(len(ct_preds)):
-        return round(ct_preds[i])
+        return ct_preds[i]
