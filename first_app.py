@@ -29,7 +29,7 @@ with header:
   st.markdown("""<h1 style='text-align:center;background-color:#003399;color:white;padding:20px'>Crowd Counting App</h1>
   <hr>
   <h2 style='color:#003399'><b>Instruction </b></h2>
-  <p>Below are examples of bad images (not a crowd), Dense vs Non-dense imanges for your references.</p>
+  <p>Below are examples of bad images (not a crowd), dense vs non-dense images for your references.</p>
   <p class='container'>
   <span>
   <img src="https://bambiniphoto.sg/wp-content/uploads/family-photography-bambini-025.jpg" alt="avoid1" style="width:300px;height:150px;padding:5px">
